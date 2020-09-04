@@ -1,5 +1,4 @@
 syntax on
-set guicursor=
 set tabstop=4
 set smartindent
 set autoindent
