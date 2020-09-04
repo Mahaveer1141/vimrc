@@ -1,5 +1,3 @@
-set nocompatible
-filetype off
 syntax on
 set guicursor=
 set tabstop=4
@@ -9,7 +7,6 @@ set shiftwidth=4
 set belloff=all
 set incsearch
 set number relativenumber
-highlight ColorColumn ctermbg=0 guibg=lightgr
 set cursorline
 " Give more space for displaying messages.
 set cmdheight=2
@@ -20,9 +17,6 @@ set updatetime=50
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
-
-set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 call plug#begin('~/.vim/plugged')
 
