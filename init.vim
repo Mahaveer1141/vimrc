@@ -6,7 +6,6 @@ set shiftwidth=4
 set belloff=all
 set incsearch
 set number relativenumber
-set cursorline
 " Give more space for displaying messages.
 set cmdheight=2
 
