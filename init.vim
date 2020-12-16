@@ -1,11 +1,11 @@
+"source ~/.vimrc
 syntax on
-set tabstop=4
-set smartindent
+set nu
 set autoindent
+set tabstop=4
 set shiftwidth=4
 set belloff=all
 set incsearch
-set number relativenumber
 " Give more space for displaying messages.
 set cmdheight=2
 
@@ -26,11 +26,9 @@ Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdcommenter'
-"  I AM SO SORRY FOR DOING COLOR SCHEMES IN MY VIMRC, BUT I HAVE
-"  TOOOOOOOOOOOOO
 Plug 'gruvbox-community/gruvbox'
+Plug 'https://github.com/joshdick/onedark.vim.git'
 Plug 'sainnhe/gruvbox-material'
-Plug 'phanvt/vim-monokai-pro'
 Plug 'vim-airline/vim-airline'
 Plug 'flazz/vim-colorschemes'
 Plug '/home/mpaulson/personal/vim-be-good'
@@ -38,7 +36,7 @@ Plug 'scrooloose/nerdtree'
 
 call plug#end()
 
-nmap <C-f> :NERDTreeToggle<CR>
+nmap <C-n> :NERDTreeToggle<CR>
 nmap <C-_>   <Plug>NERDCommenterToggle
 vmap <C-_>   <Plug>NERDCommenterToggle<CR>gv
 
@@ -80,4 +78,48 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+"colorscheme onedark
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" use <cr> to confirm completion, `<c-g>u` means break undo chain at current
+" position coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <cr>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<c-y>" : "\<c-g>u\<cr>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
+endif
+
+set mouse=a
+set clipboard=unnamed
+inoremap {<CR> {<CR>}<C-o>O
+au FileType python setl shiftwidth=4 tabstop=4
+au FileType cpp setl shiftwidth=4 tabstop=4
+set guicursor=
+autocmd filetype cpp nnoremap <F9> :w <bar> !g++ -std=c++17 % -o %:r<CR>
+nmap <C-f> :FZF<CR>
+"colorscheme solarized
+colorscheme codedark
+set background=dark
 
